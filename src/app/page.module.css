@@ -1,40 +1,47 @@
 
 
 .hero {
-  height: 100vh;
+  height: 90vh;
   display: flex;
   align-items: center;
-  justify-content: center;
-  text-align: center;
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), /* url('background.jpg') */;
-  background-size: cover;
-  background-attachment: fixed;
-  color: #FFd700;
+  justify-content: start;
+  color: #fff;
   padding: 2rem;
 }
 
+.hero video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  min-width: 100%; 
+  object-fit: contain; 
+  z-index: -1; 
+}
+
 .heroContent {
-  max-width: 800px;
+  max-width: 40rem;
+  margin: 0rem 0rem 5rem 20rem;
 }
 
 .hero h1 {
-  font-size: 3.5rem;
+  font-size: 5rem;
   margin-bottom: 1rem;
-  background: linear-gradient(45deg, var(--primary), var(--accent));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #fff;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  line-height: 4.5rem;
 }
 
 .hero p {
-  color : 2px 2px 4px rgba(0, 0, 0, 0.3);
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
-  line-height: 1.6;
+  font-size: 1rem;
+  margin: 2rem 0rem 3rem 0rem;
+  line-height: 1.2rem;
 }
 
 .btn {
-  padding: 1rem 2rem;
+  padding: 0.8rem 4rem;
   background: var(--primary);
   color: white;
   text-decoration: none;
@@ -48,8 +55,17 @@
 
 .btn:hover {
   background: var(--secondary);
+  color: var(--primary);
   transform: translateY(-3px);
   box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+}
+
+.servicesContainer {
+  background-color: black;
+}
+
+.featuresContainer {
+  background-color: black;
 }
 
 .services,
@@ -63,7 +79,7 @@
 .sectionTitle {
   text-align: center;
   margin-bottom: 3rem;
-  color: var(--dark);
+  color: #fff;
   font-size: 2.5rem;
   position: relative;
 }
@@ -88,7 +104,7 @@
 
 .serviceCard {
   padding: 2rem;
-  background: white;
+  background: rgb(73, 73, 73);
   border-radius: 15px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: all 0.3s;
@@ -121,6 +137,7 @@
   color: var(--primary);
   margin-bottom: 1rem;
   font-size: 1.5rem;
+  border-bottom: 1px solid #00000073;
 }
 
 .contactForm {
