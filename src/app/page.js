@@ -8,13 +8,18 @@ export default function Home() {
 
       <section className={styles.hero} id="home">
         <div className={styles.heroContent}>
+          <video autoPlay muted loop>
+            <source src="/videos/bg-site.mp4" type="video/mp4" />
+            Seu navegador não suporta vídeos HTML5.
+          </video>
           <h1 className={styles.floatingElement}>Impucione sua marca para o próximo nível</h1>
           <p>Transforme sua visão digital: crie experiências online incríveis e alcance resultados surpreendentes com nossa expertise em inovação, tecnologia e marketing.</p>
           <a href="#contact" className={styles.btn}>Transforme</a>
         </div>
       </section>
 
-      <section className={styles.services} id="services">
+      <section className={styles.servicesContainer} id="services">
+        <div className={styles.services}>
         <h2 className={styles.sectionTitle}>Nossos Serviços</h2>
         <div className={styles.servicesGrid}>
           <div className={styles.serviceCard}>
@@ -30,9 +35,11 @@ export default function Home() {
             <p>Gestão de tráfego pago, campanhas personalizadas no Google Ads e redes sociais para maximizar seu retorno sobre investimento.</p>
           </div>
         </div>
+        </div>
       </section>
 
-      <section className={styles.features} id="features">
+      <section className={styles.featuresContainer} id="features">
+        <div className={styles.features}>
         <h2 className={styles.sectionTitle}>Nossos Diferenciais</h2>
         <div className={styles.featuresGrid}>
           <div className={styles.featureCard}>
@@ -50,6 +57,7 @@ export default function Home() {
             <h3>Resultados Comprovados</h3>
             <p>Estratégias comprovadas para aumentar suas conversões</p>
           </div>
+        </div>
         </div>
       </section>
 
