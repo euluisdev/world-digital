@@ -12,9 +12,11 @@ export default function Home() {
             <source src="/videos/bg-site.mp4" type="video/mp4" />
             Seu navegador não suporta vídeos HTML5.
           </video>
-          <h1 className={styles.floatingElement}>Impucione sua marca para o próximo nível</h1>
-          <p>Transforme sua visão digital: crie experiências online incríveis e alcance resultados surpreendentes com nossa expertise em inovação, tecnologia e marketing.</p>
-          <a href="#contact" className={styles.btn}>Transforme</a>
+          <div className={styles.heroTitles}>
+            <h1 className={styles.floatingElement}>Impucione sua marca para o próximo nível</h1>
+            <p>Transforme sua visão digital: crie experiências online incríveis e alcance resultados surpreendentes com nossa expertise em inovação, tecnologia e marketing.</p>
+            <a href="#contact" className={styles.btn}>Transforme</a>
+          </div>
         </div>
       </section>
 
