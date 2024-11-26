@@ -1,12 +1,15 @@
 
 
 .hero {
-  height: 90vh;
+  height: 100%;
   display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: start;
   color: #fff;
-  padding: 2rem;
+  padding: 0.5rem;
+  position: relative;
+  overflow: hidden;
+  background-color: #000000;
 }
 
 .hero video {
@@ -14,34 +17,33 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: auto;
-  min-height: 100%;
-  min-width: 100%; 
-  object-fit: contain; 
-  z-index: -1; 
+  min-height: 30%;
+  object-fit: cover; 
+  z-index: 1;  
+  pointer-events: none;
 }
 
 .heroContent {
-  max-width: 40rem;
-  margin: 0rem 0rem 5rem 20rem;
+  max-width: 20rem;
+  margin: 15rem 0rem 0rem 0rem;
 }
 
 .hero h1 {
-  font-size: 5rem;
-  margin-bottom: 1rem;
+  font-size: 1.8rem;
+  margin-bottom: 0.7rem;
   color: #fff;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  line-height: 4.5rem;
+  line-height: 2rem;
 }
 
 .hero p {
   font-size: 1rem;
-  margin: 2rem 0rem 3rem 0rem;
+  margin: 0.5rem 0rem 2rem 0rem;
   line-height: 1.2rem;
 }
 
 .btn {
-  padding: 0.8rem 4rem;
+  padding: 0.5rem 6rem;
   background: var(--primary);
   color: white;
   text-decoration: none;
@@ -59,6 +61,213 @@
   transform: translateY(-3px);
   box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
 }
+
+@media (min-width: 415px) {
+  .heroContent {
+    margin: 18rem 0rem 0rem 0rem;
+  }
+}
+
+@media (min-width: 500px) {
+  .heroTitles {
+    top: 45%;
+    left: 40%;
+    width: 25rem;
+  }
+  
+  .heroContent {
+    margin: 21rem 0rem 0rem 0rem;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+    margin: 0rem 0rem 1rem -2.5rem;
+    line-height: 2.5rem;
+  }
+  
+  .hero p {
+    font-size: 0.9rem;
+    margin: 0.5rem 0rem 2.5rem -2.5rem;
+    line-height: 1.2rem;
+  }
+
+  .btn {
+    margin: 0.5rem 0rem 0rem -2.5rem;
+  }
+}
+
+@media (min-width: 595px) {
+  .heroContent {
+    margin: 27rem 0rem 0rem 0rem;
+  }
+
+  .hero h1 {
+    font-size: 2.6rem;
+    margin: 0rem 0rem 1rem -2.5rem;
+    line-height: 3rem;
+  }
+  
+  .hero p {
+    font-size: 0.9rem;
+    margin: 0.5rem 0rem 2.5rem -2.5rem;
+    line-height: 1.2rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero {
+    min-height: 50vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding: 1rem;
+    z-index: 0; 
+    position: relative;
+  }
+  
+  .hero video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    object-fit: contain; 
+    z-index: 1; 
+    pointer-events: none;
+  }
+
+  .heroTitles {
+    position: absolute;
+    top: 45%;
+    left: 30%;
+    width: 25rem;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    z-index: 3;
+  }
+  
+  .heroContent {
+    width: 100%;
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    line-height: 3rem;
+    margin: 0rem 0rem 0.5rem 0rem;
+  }
+  
+  .hero p {
+    font-size: 0.9rem;
+    margin: 1rem 0rem 2rem 0rem;
+    line-height: 1.2rem;
+  }
+  
+  .btn {
+    padding: 0.5rem 6rem;
+    font-size: 1rem;
+    margin: 0rem 0rem 0rem 0rem;
+  }
+  
+  .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+  }
+}
+
+@media (min-width: 950px) {
+  .hero {
+    min-height: 60vh;
+  }
+}
+@media (min-width: 1050px) {
+  .hero {
+    min-height: 70vh;
+  }
+
+  .heroTitles {
+    top: 45%;
+    left: 35%;
+    width: 35rem;
+  }
+  
+  .hero h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    line-height: 3.5rem;
+  }
+  
+  .hero p {
+    font-size: 1rem;
+    margin: 1rem 0rem 2rem 0rem;
+    line-height: 1.2rem;
+  }
+  
+  .btn {
+    padding: 0.7rem 7rem;
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1180px) {
+  .hero {
+    min-height: 80vh;
+  }
+
+  .heroTitles {
+    top: 45%;
+    left: 30%;
+    width: 40rem;
+  }
+  
+  .hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    line-height: 4rem;
+  }
+  
+  .hero p {
+    font-size: 1rem;
+    margin: 2rem 0rem 3rem 0rem;
+    line-height: 1.4rem;
+  }
+  
+  .btn {
+    padding: 0.7rem 8rem;
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .hero {
+    min-height: 90vh;
+  }
+
+  .heroTitles {
+    top: 45%;
+    left: 35%;
+    width: 40rem;
+  }
+  
+  .hero h1 {
+    font-size: 4.5rem;
+    line-height: 5rem;
+    line-height: 4.5rem;
+  }
+  
+  .hero p {
+    font-size: 1rem;
+    margin: 2rem 0rem 3rem 0rem;
+    line-height: 1.5rem;
+  }
+  
+  .btn {
+    padding: 0.7rem 9rem;
+    font-size: 1rem;
+  }
+}
+
+
 
 .servicesContainer {
   background-color: black;
@@ -119,7 +328,7 @@
   left: 0;
   width: 100%;
   height: 5px;
-  background: linear-gradient(90deg, var(--primary), var(--accent));
+  background: linear-gradient(90deg, var(--primary), var(--primary));
   transform: scaleX(0);
   transition: transform 0.3s;
 }
@@ -136,8 +345,9 @@
 .serviceCard h3 {
   color: var(--primary);
   margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
   font-size: 1.5rem;
-  border-bottom: 1px solid #00000073;
+  border-bottom: 1px solid #0000001a;
 }
 
 .contactForm {
@@ -212,12 +422,3 @@
   animation: float 6s ease-in-out infinite;
 }
 
-@media (max-width: 768px) {
-  .hero h1 {
-    font-size: 2rem;
-  }
-
-  .contactForm {
-    padding: 1.5rem;
-  }
-}
