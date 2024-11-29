@@ -1,0 +1,207 @@
+:root {
+    --bg-dark: rgba(0, 0, 0, 0.082);
+    --text-light: #fff;
+}
+
+.header {
+    background: var(--bg-dark);
+    color: var(--text-light);
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    padding: 0rem 1rem 0rem 1rem;
+}
+.header.scrolled {
+    background: rgba(255, 0, 212, 0.930);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+@media (min-width: 450px) {
+    .header {
+        padding: 0rem 2rem 0rem 2rem;
+    }
+}
+
+.nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.logoImage {
+    width: 3.5rem;
+    height: auto;
+    margin-right: 0.2rem;
+    cursor: pointer;
+    filter: invert(1) brightness(2);
+}
+.logoImage.scrolled {
+    width: 3.5rem;
+    height: auto;
+    margin-right: 0.2rem;
+    cursor: pointer;
+    filter: invert(1) brightness(2);
+}
+.header.scrolled .logoImage {
+    color: black;
+    filter: none;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--text-light);
+    text-shadow: 0 0 10px rgba(37, 99, 235, 0.3);
+    cursor: pointer;
+    letter-spacing: 0.1rem;
+}
+
+
+@media (min-width: 450px) {
+    .logoImage {
+        width: 5rem;
+        height: auto;
+        margin-right: 0.5rem;
+        cursor: pointer;
+        filter: invert(1) brightness(2);
+    }
+    
+    .logo {
+        display: flex;
+        align-items: center;
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: var(--text-light);
+        text-shadow: 0 0 10px rgba(37, 99, 235, 0.3);
+        cursor: pointer;
+        letter-spacing: 0.2rem;
+    }
+}
+
+.menu-toggle {
+    width: 25px;
+    height: 20px;
+    position: relative;
+    cursor: pointer;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 1001;
+}
+
+@media (min-width: 450px) {
+    .menu-toggle {
+        width: 30px;
+    }
+}
+
+.menu-toggle .bar {
+    width: 100%;
+    height: 3px;
+    background-color: var(--text-light);
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%) rotate(45deg);
+    transition: all 0.3s ease;
+}
+
+.menu-toggle .bar::before,
+.menu-toggle .bar::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background-color: var(--text-light);
+    transition: all 0.3s ease;
+}
+
+.menu-toggle .bar::before {
+    top: -10px;
+    transform: rotate(-90deg);
+}
+
+.menu-toggle .bar::after {
+    bottom: -10px;
+    transform: rotate(90deg);
+}
+
+.menu-toggle.active .bar {
+    transform: translateY(-50%) rotate(135deg);
+}
+
+.menu-toggle.active .bar::before {
+    top: 0;
+    transform: rotate(0);
+}
+
+.menu-toggle.active .bar::after {
+    bottom: 0;
+    transform: rotate(0);
+}
+
+
+.navLinks {
+    display: flex;
+    gap: 2rem;
+}
+
+.navLinks a {
+    color: var(--text-light);
+    text-decoration: none;
+    transition: all 0.3s;
+    position: relative;
+}
+
+.navLinks a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary);
+    transition: width 0.3s;
+}
+
+.navLinks a:hover::after {
+    width: 100%;
+}
+.header.scrolled .navLinks a:hover::after {
+    background: black;
+  }
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+    }
+
+    .navLinks {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.9);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: right 0.5s ease-in-out;
+        z-index: 999;
+    }
+
+    .navLinks.open {
+        right: 0;
+    }
+
+    .navLinks a {
+        font-size: 1.5rem;
+        margin: 1rem 0;
+    }
+}
