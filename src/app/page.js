@@ -1,10 +1,13 @@
+'use client';
+
 import Image from "next/image";
 import styles from "./page.module.css";
+import Navbar from "../../components/navBar";
 
 export default function Home() {
   return (
     <>
-      {/* <Navbar /> */}
+      <Navbar /> 
 
       <section className={styles.hero} id="home">
         <div className={styles.heroContent}>
@@ -25,12 +28,24 @@ export default function Home() {
         <h2 className={styles.sectionTitle}>Nossos Serviços</h2>
         <div className={styles.servicesGrid}>
           <div className={styles.serviceCard}>
-            <h3><i className="fas fa-laptop-code"></i> Desenvolvimento Web</h3>
+            <h3><i className="fas fa-laptop-code"></i> Sites</h3>
             <p>Sites responsivos, modernos e otimizados para todos os dispositivos. Desenvolvimento personalizado para atender às necessidades específicas do seu negócio.</p>
           </div>
           <div className={styles.serviceCard}>
             <h3><i className="fas fa-search"></i> SEO</h3>
             <p>Otimização para mecanismos de busca, garantindo que seu site alcance as primeiras posições no Google e atraia mais clientes organicamente.</p>
+          </div>
+          <div className={styles.serviceCard}>
+            <h3><i className="fas fa-bullhorn"></i> Marketing Digital</h3>
+            <p>Gestão de tráfego pago, campanhas personalizadas no Google Ads e redes sociais para maximizar seu retorno sobre investimento.</p>
+          </div>
+          <div className={styles.serviceCard}>
+            <h3><i className="fas fa-bullhorn"></i> Marketing Digital</h3>
+            <p>Gestão de tráfego pago, campanhas personalizadas no Google Ads e redes sociais para maximizar seu retorno sobre investimento.</p>
+          </div>
+          <div className={styles.serviceCard}>
+            <h3><i className="fas fa-bullhorn"></i> Marketing Digital</h3>
+            <p>Gestão de tráfego pago, campanhas personalizadas no Google Ads e redes sociais para maximizar seu retorno sobre investimento.</p>
           </div>
           <div className={styles.serviceCard}>
             <h3><i className="fas fa-bullhorn"></i> Marketing Digital</h3>
