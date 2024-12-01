@@ -278,17 +278,25 @@
 .services,
 .features,
 .contact {
-  padding: 5rem 2rem;
-  max-width: 1200px;
+  padding: 2rem 2rem;
+  max-width: 1500px;
   margin: 0 auto;
 }
 
 .sectionTitle {
   text-align: center;
-  margin-bottom: 3rem;
-  color: #fff;
-  font-size: 2.5rem;
+  margin: 1rem 0rem 3rem 0rem;
+  color: #ffffff;
+  font-size: 1.5rem;
   position: relative;
+  line-height: 2rem;
+}
+
+@media (min-width: 768px) {
+  .sectionTitle {
+    font-size: 2rem;
+    line-height: 3rem;
+  }
 }
 
 .sectionTitle::after {
@@ -302,51 +310,338 @@
   background: var(--primary);
 }
 
-.servicesGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-bottom: 4rem;
+.servicesGrid {      
+  display: flex;
+  overflow: hidden;
+  text-align: center;
+  align-items: center;
+  gap: 1rem;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  margin: 3rem;
+}
+
+.servicesGrid::-webkit-scrollbar {
+  display: none;
 }
 
 .serviceCard {
+  flex: 0 0 100%;
+  scroll-snap-align: center;
+  min-width: calc(90% - 1rem);
+  margin: 3rem 1rem 5rem 0rem;
+  transition: all 0.3s ease;
+  background-color: #111111;
   padding: 2rem;
-  background: rgb(73, 73, 73);
   border-radius: 15px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s;
+  min-height: 22rem;
+  min-width: 20rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
   position: relative;
   overflow: hidden;
 }
 
-.serviceCard::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 5px;
-  background: linear-gradient(90deg, var(--primary), var(--primary));
-  transform: scaleX(0);
-  transition: transform 0.3s;
-}
-
 .serviceCard:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-}
-
-.serviceCard:hover::before {
-  transform: scaleX(1);
+  transform: scale(1.05);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.3);
 }
 
 .serviceCard h3 {
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.8rem;
+  font-size: 1.4rem;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+}
+
+.serviceCard p {
+  font-size: 1rem;
+  color: #ffffff;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 480px) {
+  .serviceCard {
+    flex: 0 0 calc(70% - 1rem);
+    min-width: calc(70% - 1rem);
+    transform: scale(0.98);
+  }
+  
+  .serviceCard h3 {
+    font-size: 1.3rem;
+  }
+  
+  .serviceCard p {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .servicesGrid {
+    gap: 1.5rem;
+  }
+  
+  .serviceCard {
+    flex: 0 0 calc(50% - 1.5rem);
+    min-width: calc(50% - 1.5rem);
+    transform: scale(1);
+  }
+  
+  .serviceCard h3 {
+    font-size: 1.4rem;
+  }
+  
+  .serviceCard p {
+    font-size: 1.1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .serviceCard {
+    flex: 0 0 calc(33% - 1.5rem);
+    min-width: calc(33% - 1.5rem);
+  }
+}
+
+.saibaMaisBtn {
+  background: linear-gradient(90deg, #f149c7, #e208a1);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.saibaMaisBtn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  background: linear-gradient(90deg, #111, #111);
+  color: #f149c7;
+}
+
+
+
+/* Estilos do Modal */
+.modalOverlay {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(7, 11, 20, 0.95);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s ease;
+}
+
+.modalOverlay.modalActive {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modalContent {
+  background-color: #000;
+  width: 90%;
+  max-width: 1000px;
+  height: 90vh;
+  border-radius: 20px;
+  padding: 3rem;
+  overflow-y: auto;
+  position: relative;
+  transform: scale(0.7);
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.modalOverlay.modalActive .modalContent {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.modalClose {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  text-decoration: none;
+  color: var(--primary);
+  font-size: 2.5rem;
+  font-weight: bold;
+  transition: transform 0.3s ease;
+  cursor: pointer;  
+}
+
+.modalClose:hover {
+  transform: rotate(90deg);
+}
+
+.modalTitle {
+  color: var(--primary);
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #f804af65;
+}
+
+.modalDescription {
+  color: #e2e8f0;
+  line-height: 1.8;
+  font-size: 1.1rem;
+  flex-grow: 1;
+  overflow-y: auto;
+  padding-right: 1rem;
+}
+
+.modalDetails {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.modalDetailCard {
+  background-color: #111;
+  border-radius: 10px;
+  padding: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.modalDetailCard:hover {
+  transform: translateY(-10px);
+  background-color: #222;
+}
+
+.modalDetailCard h3 {
   color: var(--primary);
   margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
-  font-size: 1.5rem;
-  border-bottom: 1px solid #0000001a;
+  font-size: 1.3rem;
 }
+
+.modalDetailCard p {
+  color: #ffffff;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .modalContent {
+    width: 95%;
+    padding: 1.5rem;
+  }
+
+  .modalTitle {
+    font-size: 1.8rem;
+  }
+
+  .modalDescription {
+    font-size: 1rem;
+  }
+}
+
+
+
+.bgSection {
+  position: relative; 
+  width: 100%; 
+  height: 100vh; 
+  overflow: hidden; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+}
+
+.bgContent img {
+  position: absolute; 
+  top: 0;
+  left: 0;
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover;
+  z-index: -1;
+}
+
+.bgText {
+  color: #b36feb; 
+  font-size: 1.5rem; 
+  line-height: 1.8; 
+  display: flex;
+  justify-content: center;  
+  text-align: center; 
+  padding: 15px;  
+  border-radius: 10px; 
+  max-width: 90%;  
+  margin: 0 auto;  
+  text-shadow: 
+    0 0 6px rgba(240, 102, 228, 0.6), 
+}
+
+.bgTxt {
+  color: #fff; 
+  font-size: 1.3rem;  
+  line-height: 1.8; 
+  display: flex;
+  justify-content: center;  
+  text-align: center; 
+  padding: 15px;  
+  border-radius: 10px; 
+  max-width: 90%;  
+  margin: 0 auto;  
+  text-shadow: 
+    0 0 8px rgba(239, 242, 243, 0.8), 
+    0 0 20px rgba(255, 255, 255, 0);
+}
+
+
+@media (min-width: 768px) {
+  .bgText {
+    font-size: 2rem;  
+    max-width: 60%;  
+    margin-left: 2rem;  
+  }
+
+  .bgTxt {
+    font-size: 1.5rem; 
+    max-width: 60%;  
+    margin-left: 2rem;  
+  }
+}
+
+@media (min-width: 1024px) {
+  .bgText {
+    font-size: 2.3rem; 
+    max-width: 40%; 
+    margin-left: 5rem; 
+  }
+
+  .bgTxt {
+    font-size: 1.8rem;  
+    max-width: 40%;  
+    margin-left: 5rem; 
+  }
+}
+
+
+
 
 .contactForm {
   background: white;
