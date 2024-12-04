@@ -12,6 +12,8 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
+import { analytics } from "./firebase-config";
+
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentModalContent, setCurrentModalContent] = useState(null);
@@ -110,6 +112,12 @@ export default function Home() {
       ],
     },
   };
+
+  useEffect(() => {
+    if (analytics) {
+      console.log("Firebase Analytics inicializado!");
+    }
+  }, []);
 
   const openModal = (key) => {
     setCurrentModalContent(modalContents[key]);
