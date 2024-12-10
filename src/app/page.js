@@ -12,7 +12,13 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-import { analytics } from "./firebase-config";
+import { analytics } from "./firebaseConfig";
+
+import { collection, addDoc } from 'firebase/firestore';
+import { db } from './firebaseConfig';
+
+
+import Analytics from "../../components/analytics";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -21,7 +27,8 @@ export default function Home() {
   const [isDeleting, setIsDeleting] = useState(false);
   const [loop, setLoop] = useState(0);
   const [cursorVisible, setCursorVisible] = useState(true);
-  const text = "Por que criar um Site vai aumentar minhas vendas?";
+  const [showModalConfirm, setShowModalConfirm] = useState(false);
+  const text = "Site vai aumentar minhas vendas?";
 
   const modalContents = {
     sites: {
@@ -98,7 +105,7 @@ export default function Home() {
         { title: "Cardápio Digital", text: "O aplicativo pode apresentar um cardápio digital, permitindo que os clientes visualizem os pratos e façam pedidos diretamente pelo celular. Além disso, o app pode enviar promoções personalizadas com base no histórico de pedidos de cada cliente, aumentando a taxa de conversão e fidelizando o público." },
         { title: "Crie seu App", text: "Como funciona? Primeira reunião vamos entender o seu Negócio, analisar seus desafios e diagnosticar os problemas, vamos definir as funcionalidades e o Design. Após isso vamos desenvolver o App, fazer testes e ajustes. E por fim, o lançamento e acompanhamento do sucesso da sua Aplicação!  " },
       ],
-    }, 
+    },
     selling: {
       title: "Social Selling",
       description: "O funil de social selling é dividido em várias etapas que visam educar, engajar e nutrir leads até que estejam prontos para comprar. Essa uma visão geral das pricipais etapas de um funil de social selling.",
@@ -115,7 +122,7 @@ export default function Home() {
 
   useEffect(() => {
     if (analytics) {
-      console.log("Firebase Analytics inicializado!");
+      console.log("Firebase Analytics initialized!");
     }
   }, []);
 
@@ -154,13 +161,42 @@ export default function Home() {
     return () => clearInterval(cursorBlink);
   }, []);
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+  
+    const name = event.target.name.value;
+    const email = event.target.email.value;
+    const phone = event.target.phone.value;
+  
+    try {
+      const docRef = await addDoc(collection(db, 'contacts'), {
+        name,
+        email,
+        phone,
+        createdAt: new Date(),
+      });
+      setShowModalConfirm(true);
+
+      event.target.reset();
+
+      setTimeout(() => {
+        setShowModalConfirm(false);
+      }, 3000);
+
+    } catch (e) {
+      console.error('Erro ao adicionar documento: ', e);
+    }
+  };
+  
+
   return (
     <>
+      <Analytics />
       <Navbar />
 
       <section className={styles.hero} id="home">
         <div className={styles.heroContent}>
-          <video autoPlay muted loop>
+          <video muted autoPlay loop playsInline>
             <source src="/videos/bg-site.mp4" type="video/mp4" />
             Seu navegador não suporta vídeos HTML5.
           </video>
@@ -320,7 +356,7 @@ export default function Home() {
       <section className={styles.featuresContainer} id="features">
         <div className={styles.features}>
           <h2 className={styles.sectionTitle}>
-            {displayText}
+            Por que criar um {displayText}
             <span style={{ visibility: cursorVisible ? "visible" : "hidden" }}>|</span>
           </h2>
           <div className={styles.featuresGrid}>
@@ -388,9 +424,60 @@ export default function Home() {
         </div>
       </section>
 
+      <section>
+        <div className={styles.bannerContainer}>
+          <div className={styles.bannerText}>
+            Transformamos ideias em estratégias que vendem.  Fale conosco !
+
+          </div>
+        </div>
+      </section>
+
+      <section className={styles.plans} id="plans">
+        <h2 className={styles.plansTitle}>
+          Planos
+        </h2>
+        <div className={styles.plansCard}>
+          <img
+            src="./img/retenc.png"
+            alt="iconImg"
+            className={styles.plansImg}
+          />
+          <h3>Retenção - Premium </h3>
+          <p>Imagine que você já tenha uma base consolidada de clientes e uma estrutura digital bem estruturada. Com essas alicerces estabelecidos, vamos criar programas de fidelidade, oferecer benefícios exclusivos, implementar pesquisas de satisfação, Remarketing para reengajar leads, canais de comunicação proativos, como e-mails personalizados. Além disso, a criação de uma comunidade exclusiva e a oferta de conteúdo antecipado e exclusivo ajudam a manter os clientes satisfeitos e engajados, maximizando o índice de retenção de cada cliente.</p>
+        </div>
+        <div className={styles.plansCard}>
+          <img
+            src="./img/convert.png"
+            alt="iconImg"
+            className={styles.plansImg}
+          />
+          <h3>Conversão - Intermediary </h3>
+          <p>A implementação deste Plano garante o desenvolvimento de landing pages otimizadas, estratégias de lead magnets e automatizações de e-mail marketing personalizadas, garantindo uma jornada eficaz que aumenta a taxa de conversão dos seus clientes. É essencial para você que já tem uma base sólida de leads e uma estrutura digital bem estabelecida e consistente, com um site otimizado, canais de comunicação eficientes e dados organizados.</p>
+        </div>
+        <div className={styles.plansCard}>
+          <img
+            src="./img/atraction.png"
+            alt="iconImg"
+            className={styles.plansImg}
+          />
+          <h3>Atração - Plan Basic </h3>
+          <p>Ao iniciarmos o plano de atração, é essencial estruturarmos toda a base digital da sua marca. Isso inclui otimização do site, criação de uma identidade visual consistente, definição de público-alvo, a implementação de ferramentas para coleta de dados e análise de resultados. Apenas com essa estruturação prévia é possível garantir que as próximas estratégias como: SEO, marketing de conteúdo, redes sociais, anúncios pagos e parcerias estratégicas do Plano de Atração sejam eficazes.</p>
+        </div>
+        <div className={styles.plansCard}>
+          <img
+            src="./img/added.png"
+            alt="iconImg"
+            className={styles.plansImg}
+          />
+          <h3>Adicionais </h3>
+          <p>Branding, Logo, Social Media Estratágico, Aplicativo Próprio, Campanhas Sazonais, Promoções e Lançamentos, Cardápio Digital, Scripts de Vendas e estratégias que realmente funcionam.</p>
+        </div>
+      </section>
+
       <section className={styles.contact} id="contact">
-        <h2 className={styles.sectionTitleForm}>Se isso fez algum sentido para você, solicite agora um orçamento grátis e comece a transformar seus resultados!</h2>
-        <form className={styles.contactForm} id="contactForm" /* onSubmit={handleSubmit} */>
+        <h2 className={styles.sectionTitleForm}>Se isso fizer sentindo para você, a gente vai a partir de agora começar juntos a estruturar ainda mais seu negócio. Faça seu cadastro que te retornaremos em seguida!</h2>
+        <form className={styles.contactForm} id="contactForm"  onSubmit={handleSubmit} >
           <div className={styles.formGroup}>
             <label htmlFor="name">Nome</label>
             <input type="text" id="name" name="name" required />
@@ -403,8 +490,17 @@ export default function Home() {
             <label htmlFor="phone">Celular</label>
             <input type="tel" id="phone" name="phone" required /* onChange={handlePhoneMask} */ />
           </div>
-          <button type="submit" className={styles.btnForm}>Solicitar Orçamento</button>
+          <button type="submit" className={styles.btnForm}>Consultoria Gratuita</button>
         </form>
+
+        {showModalConfirm && (
+        <div className={styles.modalConfirm}>
+          <div className={styles.modalConfirmContent}>
+            <h2>Cadastro Realizado!</h2>
+            <p>Seus dados foram enviados com sucesso.</p>
+          </div>
+        </div>
+      )}
       </section>
       <Footer />
     </>
