@@ -2,7 +2,7 @@
 .footer-container {
     background-color: #1d1d1d;
     color: #FFFFFF;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 1rem 0.5rem 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -53,6 +53,7 @@
 
 .developed {
     font-size: 0.8rem;
+    margin-bottom: 2rem;
 }
 
 .developed a {
@@ -100,6 +101,7 @@
     .developed {
         text-align: right;
         font-size: 0.9rem;
+        margin-bottom: 0rem;
     }
 }   
 
