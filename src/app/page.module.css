@@ -323,7 +323,7 @@
 @media (min-width: 768px) {
   .services,
   .features {
-    padding: 1rem 2rem;
+    padding: 1rem 2rem 3rem 2rem;
     max-width: 1500px;
     margin: 0 auto;
 }
@@ -501,8 +501,8 @@
   left: 0;
   top: 0;
   width: 100%;
-  height: 100%;
-  background-color: rgba(7, 11, 20, 0.95);
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.932);
   opacity: 0;
   pointer-events: none;
   transition: all 0.4s ease;
@@ -523,6 +523,7 @@
   height: 90vh;
   border-radius: 20px;
   padding: 5rem 1rem 2rem 1rem;
+  margin: 5rem 0rem 0rem 0rem;
   overflow-y: auto;
   position: relative;
   transform: scale(0.7);
@@ -531,14 +532,21 @@
   display: flex;
   flex-direction: column;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  border: 1px solid #ffffff70;
 }
 
 @media (min-width: 768px) {
+  .modalOverlay {
+    height: 100%;
+    margin: 0rem;
+    background-color: #000000ea;
+  }
+
   .modalContent {
+    height: 90vh;
     background-color: #000;
     width: 90%;
     max-width: 1000px;
-    height: 90vh;
     border-radius: 20px;
     padding: 3rem 3rem 3rem 3rem;
     overflow-y: auto;
@@ -631,7 +639,7 @@
 }
 
 
-
+/* img section */
 .bgSection {
   position: relative; 
   width: 100%; 
@@ -668,7 +676,7 @@
 }
 
 .bgTxt {
-  color: #fff; 
+  color: #8352ac; 
   font-size: 1.3rem;  
   line-height: 1.8; 
   display: flex;
@@ -796,11 +804,238 @@
 
 
 
+.bannerContainer {
+  position: relative;
+  width: 100%;
+  height: 4rem;
+  overflow: hidden;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+}
+
+.bannerText {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+  font-size: 1.4rem; 
+  color: #000000;
+  animation: moveBanner 11s linear infinite;
+  letter-spacing: 2px;
+  will-change: transform;
+}
+
+
+@keyframes moveBanner {
+  0% {
+    transform: translateX(100%); 
+  }
+  100% {
+    transform: translateX(-100%); 
+  }
+}
+
+@media (min-width: 768px) {
+  .bannerContainer {
+    height: 5rem; 
+  }
+
+  .bannerText {
+    font-size: 2rem; 
+    animation: moveBanner 15s linear infinite; 
+  }
+}
+
+@media (min-width: 1000px) {
+  .bannerText {
+    font-size: 2.1rem; 
+    animation: moveBanner 18s linear infinite; 
+    padding-right: 10%;
+  }
+}
+
+@media (min-width: 1300px) {
+  .bannerText {
+    padding-right: 15%;
+  }
+}
+@media (min-width: 1500px) {
+  .bannerText {
+    padding-right: 25%;
+  }
+}
+@media (min-width: 1800px) {
+  .bannerText {
+    padding-right: 35%;
+  }
+}
+@media (min-width: 2300px) {
+  .bannerText {
+    padding-right: 50%;
+  }
+}
+
+
+
+
+
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes periodicHover {
+  0%, 100% {
+    transform: translateY(0);
+    box-shadow: 0 4px 6px rgba(255, 20, 147, 0.1);
+  }
+  50% {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 15px rgba(255, 20, 147, 0.2);
+  }
+}
+
+.plans {
+  background-color: #000000;
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+.plansTitle {
+  color: #ff1493; 
+  font-size: 1.6rem;
+  margin-bottom: 2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  animation: blink 1.5s infinite;
+}
+
+.plansCard {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid #ff149123;
+  border-radius: 12px;
+  padding: 1rem 0.8rem 1rem 0.8rem;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(255, 20, 147, 0.1);
+  cursor: pointer;
+  animation: periodicHover 3s infinite;
+  animation-delay: 0s; 
+}
+
+.plansCard:nth-child(2) {
+  animation-delay: 1s; 
+}
+
+.plansCard:nth-child(3) {
+  animation-delay: 2s; 
+}
+
+.plansCard:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 15px rgba(255, 20, 147, 0.2);
+  animation-play-state: paused; 
+}
+
+.plansImg {
+  width: auto;
+  height: 74px;
+  margin-bottom: 1rem;
+  color: #fff;
+  filter: brightness(0) saturate(100%) invert(35%) sepia(82%) saturate(2878%) hue-rotate(306deg) brightness(101%) contrast(101%);
+}
+
+.plansCard h3 {
+  color: #fff;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.plansCard p {
+  color: #ffffff;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  opacity: 0.8;
+}
+
+@media screen and (min-width: 768px) {
+  .plans {
+    padding: 3rem 2rem;
+  }
+
+  .plansTitle {
+    font-size: 3rem;
+  }
+
+  .plansCard {
+    max-width: 400px;
+    min-width: 300px;
+    margin: 0 auto 2rem;
+    padding: 1rem 1rem 2rem 1rem;
+  }
+
+  .plansCard h3{
+    font-size: 1.6rem;
+  }
+
+  .plansCard p{
+    font-size: 1rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .plans {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .plansTitle {
+    width: 100%;
+  }
+
+  .plansCard {
+    flex: 0 1 calc(25% - 2rem);
+  }
+}
+
+@media screen and (min-width: 1500px) {
+  .plans {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .plansTitle {
+    width: 100%;
+  }
+
+  .plansCard {
+/*     flex: 0 1 calc(25% - 2rem); */
+    min-width: 15rem;
+  }
+}
+
+
+
+
+
 
 .contact {
   position: relative;
   background: linear-gradient(135deg, #0a0a0a, #1c1c1c);
-  height: 100vh;
+  height: 70vh;
   width: 100%;
   display: flex;
   align-items: center;
@@ -839,11 +1074,12 @@
 
 .contactForm {
   position: relative;
-  width: 100%;
-  max-width: 500px;
+  width: 85%;
+  max-width: 25rem;
   background: rgba(20, 20, 20, 0.8);
   border-radius: 25px;
-  padding: 3rem 3rem 3rem 3rem;
+  padding: 3rem 1rem 3rem 1rem;
+  
   box-shadow: 
       0 25px 50px rgba(255, 20, 147, 0.1),
       0 0 100px rgba(255, 20, 147, 0.2);
@@ -889,7 +1125,7 @@
   text-align: center;
   font-size: 1rem;
   width: 100%;
-  margin: -15rem 10rem 5rem 10rem;
+  margin: 0rem 10rem 3rem 10rem;
   padding:  0.1rem 0.5rem 0.1rem 0.5rem;
 
 }
@@ -898,12 +1134,17 @@
   .sectionTitleForm {
     color: #fff;
     text-align: center;
-    font-size: 1.8rem;
-    width: 50rem;
-    margin: 0rem 10rem 8rem 10rem;
+    font-size: 1.6rem;
+    max-width: 50rem;
+    padding:  0.1rem 3rem 0.1rem 3rem;
     text-shadow: 
     0 0 10px rgba(243, 240, 242, 0.5),
     0 0 20px rgba(253, 253, 253, 0.3);
+  }
+}
+@media (min-width: 1000px) {
+  .sectionTitleForm {
+    max-width: 80rem;
   }
 }
 
@@ -914,7 +1155,8 @@
 
 .formGroup input {
   width: 100%;
-  padding: 1rem;
+  padding: 0.6rem 0.7rem 0.6rem 0.7rem;
+  font-size: 1rem;
   background: rgba(30, 30, 30, 0.7);
   border: 2px solid rgba(255, 20, 147, 0.2);
   border-radius: 12px;
@@ -923,12 +1165,17 @@
   position: relative;
 }
 
+@media (min-width: 768px) {
+  .formGroup input {
+    padding: 0.7rem 1rem 0.7rem 1rem;
+    font-size: 1rem;
+
+  }
+}
+
 .formGroup input:focus {
   outline: none;
   border-color: #FF1493;
-  box-shadow: 
-      0 0 15px rgba(255, 20, 147, 0.4),
-      inset 0 0 10px rgba(255, 20, 147, 0.2);
 }
 
 .btnForm {
@@ -973,11 +1220,79 @@
   left: 100%;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (min-width: 500px) {
   .contactForm {
-      width: 95%;
-      padding: 2rem;
-      transform: none;
+      padding: 3rem 2rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .contact {
+     height: 90vh;
+     width: 100%;
+  }
+  .contactForm {
+      width: 100%;
+      max-width: 500px;
+      padding: 3.5rem 2.5rem;
+  }
+}
+
+
+
+
+
+
+.modalConfirm {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.5s ease;
+}
+
+.modalConfirmContent {
+  background-color: #121212;
+  border: 2px solid #ff1493;
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  max-width: 90%;
+  width: 300px;
+  box-shadow: 0 10px 20px rgba(255, 20, 147, 0.2);
+}
+
+.modalConfirmContent h2 {
+  color: #ff1493;
+  margin-bottom: 1rem;
+}
+
+.modalConfirmContent p {
+  color: #ffffff;
+  opacity: 0.8;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
   }
 }
 
